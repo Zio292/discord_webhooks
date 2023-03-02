@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+    <style>
+        body{
+            background:lightblue;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            color:white;
+        }
+        input{
+            outline: rgb(156, 156, 131);
+            background: lightgoldenrodyellow;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            color:#333;
+            width: 350px;
+            height:55px
+        }
+        button{
+            outline: #333;
+            background: #555;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            color:white;
+            width: 350px;
+            height:55px
+        }
+    </style>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discord Webhooks</title>
+  </head>
+  <body>
+    <center><input id="name"></center><br><br>
+    <center><button onclick="sendMessage()">Delete</button></center><br><br><br><br><br><br>
+    <center><input id="val1"></center><br><br>
+    <center><input id="val2"></center><br><br>
+    <center><button onclick="sendMessagea()">Edit</button></center>
+  </body>
+
+  <script>
+    function sendMessage() {
+      var request = new XMLHttpRequest();
+      var x = document.getElementById("name").innerHTML
+      request.open("DELETE", x);
+
+      request.setRequestHeader('Content-type', 'application/json');
+
+      var params = {
+        username: "My Webhook Name",
+        avatar_url: "",
+        content: "The message to send"
+      }
+
+      request.send(JSON.stringify(params));
+    }
+    function sendMessagea() {
+      var request = new XMLHttpRequest();
+      var x = document.getElementById("name").innerHTML
+      request.open("PATCH", x);
+
+      request.setRequestHeader('Content-type', 'application/json');
+      var nm = document.getElementById("val1").innerHTML
+      var av = document.getElementById("val2").innerHTML
+      var params = {
+        name: nm,
+        avatar: av
+      }
+
+      request.send(JSON.stringify(params));
+    }
+  </script>
+</html>
